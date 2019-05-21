@@ -1,53 +1,33 @@
-<!DOCTYPE HTML>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<title>AviaTickets</title>
-<link rel="shortcut icon" href="style/images/favicon.png"/>
-<link rel="stylesheet" type="text/css" href="style.css" media="all" />
-<link rel="stylesheet" type="text/css" href="style/css/view.css" media="all" />
-<link rel="stylesheet" type="text/css" href="style/type/marketdeco.css" media="all" />
-<link rel="stylesheet" type="text/css" href="style/type/merriweather.css" media="all" />
-<!--[if IE 8]>
-<link rel="stylesheet" type="text/css" href="style/css/ie8.css" media="all" />
-<![endif]-->
-<!--[if IE 9]>
-<link rel="stylesheet" type="text/css" href="style/css/ie9.css" media="all" />
-<![endif]-->
-<script type="text/javascript" src="style/js/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="style/js/ddsmoothmenu.js"></script>
-<script type="text/javascript" src="style/js/html5.js"></script>
-<script type="text/javascript" src="style/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="style/js/selectnav.js"></script>
-<script type="text/javascript" src="style/js/twitter.min.js"></script>
-</head>
+<?php 
 
-<body>
-<div id="page" class="hfeed">
-<div id="wrapper">
-<header id="branding" role="banner">
-  <h1 id="site-title"> 
-  	<a href="index.php" title="Serendipity" rel="home">AviaTickets</a> 
-  </h1>
-  <nav id="access" class="access" role="navigation">
-        <div id="menu" class="menu">
-        	<ul id="tiny">
-				<li><a href="index.php">Book Tickets</a></li>
-				<li><a href="contact.php">Contact us</a></li>
-				<li><a href="#">Guest</a>
-					<ul>
-			            <li><a href="login.php">Sign-in</a></li>
-			            <li><a href="register.php">Register</a></li>
-			        </ul>
-				</li>
-			</ul>
-		</div>
-		<div class="triangle-l"></div>
-		<div class="triangle-r"></div>
-  </nav>
-  <!-- #access --> 
-</header>
-<!-- #branding -->
+error_reporting(E_ALL); 
+ini_set("display_errors", 1); 
+include_once($_SERVER['DOCUMENT_ROOT'].'/includes/core.php');
+
+if (isset($_POST['name']) and isset($_POST['password']) and $_POST['password'] !== '' and $_POST['name'] !== '') {
+	if (preg_match("/^[a-zA-Z0-9]{3,30}$/", $_POST['name'])) {
+		$user = $dbconnect->query("SELECT * FROM users WHERE name='".$_POST['name']."'");
+		$U = $user->num_rows;
+		if ($U == 1){
+			$user_data = $user->fetch_array();
+			if ($_POST['password'] == $user_data['password']){
+				setcookie("WebEngineerRestrictedArea",$_POST['name'],time()+60*60*24);
+				header ("Location: ".'index.php');
+				} else {
+					$update_error = TRUE;
+				}
+			} else {
+				$error_pass = TRUE;
+			}
+		} else {
+			$error_login = TRUE;
+		}
+	} else {
+		$syntax_error = TRUE;
+	}
+	
+include_once($_SERVER['DOCUMENT_ROOT'].'/includes/header.php');
+?>
 
 
     <!-- Begin Form -->
@@ -57,10 +37,10 @@
         <fieldset>
           <ol>
             <li class="form-row text-input-row">
-              <input type="text" name="email" class="text-input defaultText required email" title="Email"/>
+              <input type="text" name="name" class="text-input defaultText required email" title="Login"/>
             </li>
             <li class="form-row text-input-row">
-              <input type="text" name="subject" class="text-input defaultText" title="Password"/>
+              <input type="password" name="password" class="text-input defaultText" title="Password"/>
             </li>
             <li class="button-row">
               <input type="submit" value="Login" name="Login" class="btn-submit" />
