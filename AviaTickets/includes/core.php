@@ -2,7 +2,7 @@
 define("MYSQL_HOST","localhost");
 define("MYSQL_USER","admin");
 define("MYSQL_PASSWORD","admin");
-define("MYSQL_DB_NAME","parfenov_db");
+define("MYSQL_DB_NAME","test");
 
 $table = "themes";
 
