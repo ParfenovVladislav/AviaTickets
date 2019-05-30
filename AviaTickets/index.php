@@ -16,14 +16,14 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/includes/header.php');
                                 <td>
                                     <section>
                                         <label class="select-label">Leaving from:</label>
-                                        <input type="text" name="leaving" class="text-input defaultText required email"
+                                        <input type="text" name="leaving" id ="departurePoint" class="text-input defaultText required email"
                                             title="City or airport" />
                                     </section>
                                 </td>
                                 <td>
                                     <section>
                                         <label class="select-label">Going to:</label>
-                                        <input type="text" name="going" class="text-input defaultText required email"
+                                        <input type="text" name="going" id ="arrivalPoint" class="text-input defaultText required email"
                                             title="City or airport" />
                                     </section>
                                 </td>
@@ -89,9 +89,14 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/includes/header.php');
 </body>
 
 <script>
+
+    var departurPointCode;
+    var arrivalPointCode;
+
 $('#Search').click(function() {
     var area = $("#ticketsDiv");
-    area.load("TicketsTableCreater.php");
+    area.load("TicketsTableCreater.php", {departurePoint:departurPointCode});
+    alert(arrivalPointCode);
 });
 
 
@@ -101,6 +106,62 @@ $(document).ready(function() {
     // have the "datepicker" class set
     $('#inputDate').Zebra_DatePicker();
 });
+
+$( function() {
+    $( "#departurePoint" ).autocomplete({
+      source: function( request, response ) {
+        $.ajax( {
+          url: "http://autocomplete.travelpayouts.com/places2",
+          dataType: "jsonp",
+          data: {
+            term: request.term,
+            types: ["city"],
+            locale: "en"
+          },
+          success: function( data ) {
+            response($.map(data.slice(0,5), function(item){
+              return{
+                  label:item.name + ", " + item.country_name,
+                  code:item.code
+              }
+            }));
+          }
+        } );
+      },
+      minLength: 2,
+      select: function( event, ui ) {
+        departurPointCode = ui.item.code;
+      }
+    } );
+  } );
+
+  $( function() {
+    $( "#arrivalPoint" ).autocomplete({
+      source: function( request, response ) {
+        $.ajax( {
+          url: "http://autocomplete.travelpayouts.com/places2",
+          dataType: "jsonp",
+          data: {
+            term: request.term,
+            types: ["city"],
+            locale: "en"
+          },
+          success: function( data ) {
+            response($.map(data.slice(0,5), function(item){
+              return{
+                  label:item.name + ", " + item.country_name,
+                  code:item.code
+              }
+            }));
+          }
+        } );
+      },
+      minLength: 2,
+      select: function( event, ui ) {
+        arrivalPointCode = ui.item.code;
+      }
+    } );
+  } );
 </script>
 
 </html>
