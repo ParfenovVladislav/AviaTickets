@@ -50,7 +50,31 @@ h1 {
 	line-height: 34px; 
 	margin-bottom: 14px;
 }
-
+h2 {
+	font-weight: normal;
+	color: #ca6d6d;
+}
+h2 a { 
+	color: inherit; 
+}
+h2 { 
+	font-size: 32px; 
+	line-height: 34px; 
+	margin-bottom: 14px;
+}
+h3 {
+	
+	font-weight: normal;
+	color: #ca6d6d;
+}
+h3 a { 
+	color: inherit; 
+}
+h3 { 
+	font-size: 20px; 
+	line-height: 34px; 
+	margin-bottom: 14px;
+}
 
 
 
@@ -327,7 +351,7 @@ input#submit,
 	border: 1px solid #dedede;
 	padding: 10px;
 	color: #606060;
-	width: 75%;
+	width: 350px;
 	height: 20px;
 }
 
@@ -382,8 +406,49 @@ input#submit,
 	clear: both;
 	visibility: hidden;
 }
+.select-box {	background: #fff;
+	border: 1px solid #dedede;
+	padding: 10px;
+	color: #606060;
+	width: 350px;
+	height: 20px;
+  cursor: pointer;
+  position : relative;
+}
 
+.select,
+.label {
+  color: #606060;
+  display: block;
+  font: 400 17px/2em 'Source Sans Pro', sans-serif;
+}
 
+.select {
+  width: 350px;
+  position: absolute;
+  top: 0;
+  height: 40px;
+  opacity: 0;
+}
+.select-box1 {
+  background: #fff;
+}
+
+.label {
+  position: relative;
+  cursor: pointer;
+}
+.open .label::after {
+   content: "▲";
+}
+.label::after {
+  content: "▼";
+  font-size: 12px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-left: 5px solid #fff;
+}
 
 /*-----------------------------------------------------------------------------------*/
 /*	FOOTER

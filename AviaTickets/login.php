@@ -1,7 +1,4 @@
-<?php 
-
-error_reporting(E_ALL); 
-ini_set("display_errors", 1); 
+<?php
 include_once($_SERVER['DOCUMENT_ROOT'].'/includes/core.php');
 
 if (isset($_POST['name']) and isset($_POST['password']) and $_POST['password'] !== '' and $_POST['name'] !== '') {
@@ -37,17 +34,16 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/includes/header.php');
         <fieldset>
           <ol>
             <li class="form-row text-input-row">
-              <input type="text" name="name" class="text-input defaultText required email" title="Login"/>
+              <input type="text" name="name" class="text-input" title="Логин"/>
             </li>
             <li class="form-row text-input-row">
-              <input type="password" name="password" class="text-input defaultText" title="Password"/>
+              <input type="password" name="password" class="text-input" title="Пароль"/>
             </li>
             <li class="button-row">
-              <input type="submit" value="Login" name="Login" class="btn-submit" />
+              <input type="submit" value="Вход" name="Login" class="btn-submit" />
             </li>
           </ol>
           <input type="hidden" name="v_error" id="v-error" value="Required" />
-          <input type="hidden" name="v_email" id="v-email" value="Enter a valid email" />
         </fieldset>
       </form>
     </div>
@@ -59,7 +55,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/includes/header.php');
 		<div id="supplementary" class="four">
 		</div><!-- #supplementary -->
 		<div id="site-generator">
-			Copyright 2019 - Parfenov & Nekrut
+			Copyright 2019 - Парфенов & Некрут
 		</div>
 
 	</footer><!-- #colophon -->
