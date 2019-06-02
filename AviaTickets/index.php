@@ -14,14 +14,14 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/includes/header.php');
                             <tr>
                                 <td>
                                     <section>
-                                        <b>Откуда:</b> <br>
+                                        <div><b>Откуда:</b></div>
                                         <input type="text" name="leaving" id ="departurePoint" class="text-input"
                                             title="Введите город" />
                                     </section>
                                 </td>
                                 <td>
                                     <section>
-                                        <b>Куда:</b>
+                                        <div><b>Куда:</b></div>
                                         <input type="text" name="going" id ="arrivalPoint" class="text-input"
                                             title="Введите город" />
                                     </section>
@@ -30,7 +30,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/includes/header.php');
                             <tr>
                                 <td>
                                     <section>
-                                        <b>Дата отправления:</b>
+                                        <div><b>Дата отправления:</b></div>
                                         <input type="text" id="inputDate" class="text-input"
                                             title="Выберите дату" />
                                     </section>
@@ -39,7 +39,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/includes/header.php');
 
                                 <td>
                                     <section>
-                                        <b>Класс:</b>
+                                        <div><b>Класс:</b></div>
 
 									<div class="select-box">
 									<label for="select-box1" class="label select-box1"><span class="label-desc">Нет предпочтений</span> </label>
