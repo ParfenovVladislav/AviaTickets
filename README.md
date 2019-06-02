@@ -4,4 +4,3 @@
 # Ссылки:
  Ссылка на Trello: https://trello.com/b/WuvsnFEl/numi-ticket
  
- Ссылка на RealTimeBoard: 
