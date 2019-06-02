@@ -7,7 +7,7 @@
 </header>
 <!-- #branding -->
 <?php
-	include_once($_SERVER['DOCUMENT_ROOT'].'/includes/test.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/includes/divheader.php');
     include_once($_SERVER['DOCUMENT_ROOT'].'/includes/core.php');
 	
     $config = array (
