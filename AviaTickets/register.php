@@ -9,8 +9,11 @@ if (isset($_POST['name']) and isset($_POST['password']) and $_POST['password'] !
     //если логин и пароль введены, то обрабатываем их, чтобы теги и скрипты не работали, мало ли что люди могут ввести
     $name = stripslashes($name);
     $name = htmlspecialchars($name);
- $password = stripslashes($password);
+    $name = mysql_real_escape_string($name);
+	$password = stripslashes($password);
     $password = htmlspecialchars($password);
+    $password = mysql_real_escape_string($password);
+	
  //удаляем лишние пробелы
     $name = trim($name);
     $password = trim($password);

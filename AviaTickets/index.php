@@ -37,25 +37,25 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/includes/header.php');
 									
                                 </td>
 
-                                <td>
+<!--	                                <td>
                                     <section>
-                                        <div><b>Класс:</b></div>
+                                        <div><b>Предпочтение:</b></div>
 
-									<div class="select-box">
-									<label for="select-box1" class="label select-box1"><span class="label-desc">Нет предпочтений</span> </label>
+								<div class="select-box">
+									<label for="select-box1" class="label select-box1"><span class="label-desc">Нет предпочтений</span></label>
 										<select id="select-box1" class="select">
-										<option value="Choice 1">Эконом</option>
-										<option value="Choice 2">Комфорт</option>
-										<option value="Choice 3">Первый класс</option>
+										<option value="">Нет предпочтений</option>
+                                                <option value="cost">Девешле</option>
+                                                <option value="duration">Быстрее</option>
 									</select>
 									</div>
 									
                                     </section>
-                                </td>
+                                </td> -->
                             </tr>
                         </table>
 						<br>
-                        <input type="submit" id="Search" class="btn-submit" value="Подобрать"/>
+                        <input type="submit" id="Search" class="btn-submit" value="Подобрать" onclick='getTickets();'/>
                     </fieldset>
                 </div>
 
@@ -78,10 +78,8 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/includes/header.php');
 
 </footer><!-- #colophon -->
 
-<script type="text/javascript" src="style/js/scripts.js"></script>
-</body>
 
-<script>
+</body><script>
 $("select").on("click" , function() {
   
   $(this).parent(".select-box").toggleClass("open");
@@ -112,67 +110,5 @@ $('#Search').click(function() {
     var area = $("#ticketsDiv");
     area.load("TicketsTableCreater.php");
 });
-
-
-$(document).ready(function() {
-    $('#inputDate').DatePicker();
-});
-
-$( function() {
-    $( "#departurePoint" ).autocomplete({
-      source: function( request, response ) {
-        $.ajax( {
-          url: "http://autocomplete.travelpayouts.com/places2",
-          dataType: "jsonp",
-          data: {
-            term: request.term,
-            types: ["city"],
-            locale: "en"
-          },
-          success: function( data ) {
-            response($.map(data.slice(0,5), function(item){
-              return{
-                  label:item.name + ", " + item.country_name,
-                  code:item.code
-              }
-            }));
-          }
-        } );
-      },
-      minLength: 2,
-      select: function( event, ui ) {
-        departurPointCode = ui.item.code;
-      }
-    } );
-  } );
-
-  $( function() {
-    $( "#arrivalPoint" ).autocomplete({
-      source: function( request, response ) {
-        $.ajax( {
-          url: "http://autocomplete.travelpayouts.com/places2",
-          dataType: "jsonp",
-          data: {
-            term: request.term,
-            types: ["city"],
-            locale: "en"
-          },
-          success: function( data ) {
-            response($.map(data.slice(0,5), function(item){
-              return{
-                  label:item.name + ", " + item.country_name,
-                  code:item.code
-              }
-            }));
-          }
-        } );
-      },
-      minLength: 2,
-      select: function( event, ui ) {
-        arrivalPointCode = ui.item.code;
-      }
-    } );
-  } );
 </script>
-
 </html>

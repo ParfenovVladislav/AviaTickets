@@ -20,6 +20,7 @@ if (isset ($_GET['exit']))
 <script type="text/javascript" src="style/js/ddsmoothmenu.js"></script>
 <script type="text/javascript" src="style/js/datepicker.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="style/js/global.js"></script>
 </head>
 
 <body>
@@ -33,10 +34,12 @@ if (isset ($_GET['exit']))
         <div id="menu" class="menu">
         	<ul id="tiny">
 				<li><a href="index.php">Подбор авиабилетов</a></li>
-				<li><a href="contact.php">Связь с нами</a></li>
+				<li><a href="contact.php">Контакты</a></li>
 				<?php if (isset($_COOKIE['WebEngineerRestrictedArea'])){ ?>
-				<li><a href="#"><?php echo $_COOKIE['WebEngineerRestrictedArea'] ?></a>
+				<li><a href="/favorites.php"><?php echo $_COOKIE['WebEngineerRestrictedArea'] ?></a>
 					<ul>
+						<!--<li><a href="/favorites.php">Избранное</a></li>-->
+						<li><a href="/history.php">История</a></li>
 			            <li><a href="?exit">Выход</a></li>
 			        </ul>
 				</li>
