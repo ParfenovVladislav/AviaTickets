@@ -5,3 +5,5 @@
  Ссылка на Trello: https://trello.com/b/WuvsnFEl/numi-ticket
  
  Ссылка на демонстрацию проекта: https://youtu.be/Dpvy9mOtCNI
+ 
+ Ссылка на сайт: http://aviatickets.ml
