@@ -4,7 +4,9 @@
 /*-----------------------------------------------------------------------------------*/
 
 $(document).ready(function() {
-	$('#inputDate').DatePicker();
+  $('#inputDate').DatePicker();
+  
+  
 	
 	$('input[title]').each(function() {
 		if($(this).val() === '') {
@@ -27,8 +29,8 @@ $(document).ready(function() {
 var departurePointCode;
 var arrivalPointCode;
 
-var dIsAirport = 0;
-var aIsAirPort = 0;
+var dIsAirport = false;
+var aIsAirport = false;
 
 $(function() {
   $("#departurePoint").autocomplete({
@@ -67,10 +69,10 @@ $(function() {
     select: function(event, ui) {
       if (ui.item.type == 1)
       {
-        dIsAirport = 1;
+        dIsAirport = true;
       }
       else{
-        dIsAirport = 0;
+        dIsAirport = false;
       }
       departurePointCode = ui.item.code;
     }
@@ -114,10 +116,10 @@ $(function() {
     select: function(event, ui) {
       if (ui.item.type == 1)
       {
-        aIsAirport = 0;
+        aIsAirport = true;
       }
       else{
-        aIsAirport = 1;
+        aIsAirport = false;
       }
       arrivalPointCode = ui.item.code;
     }
@@ -126,19 +128,50 @@ $(function() {
 
 function getTickets() {
 
-  var preferenceVal = $("#selectPreference option:selected").val();
+  var preferenceVal = $("#select-box1 option:selected").val();
   var flightDate = $("#inputDate").val();
   var area = $("#ticketsDiv");
+
+  if (departurePointCode == null){
+    alert("Укажите пункт отправления");
+    return;
+  }
+
+  if (arrivalPointCode == null){
+    alert("Укажитп пункт назначения");
+    return;
+  }
+
+  if (flightDate == null){
+    alert("Выберите дату");
+    return;
+  }
+  var preferenceVal = $("#select-box1 option:selected").val();
+  var flightDate = $("#inputDate").val();
+  var area = $("#ticketsDiv");
+
+  var a = "no";
+  var d = "no";
+
+  if(dIsAirport)
+  {
+    d = "yes";
+  }
+
+  if(aIsAirport)
+  {
+    a = "yes";
+  }
+  
   area.load("TicketsTableCreater.php", {
-    dAirport : dIsAirport,
-    aAirport : aIsAirPort,
+    dAirport : d,
+    aAirport : a,
     dPoint: departurePointCode,
     aPoint: arrivalPointCode,
     fdate: flightDate,
     preference : preferenceVal,
   });
 }
-
 
 /*-----------------------------------------------------------------------------------*/
 /*	MENU
