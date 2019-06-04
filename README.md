@@ -4,4 +4,4 @@
 # Ссылки:
  Ссылка на Trello: https://trello.com/b/WuvsnFEl/numi-ticket
  
- Ссылка на демонстрацию проекта: https://www.youtube.com/watch?v=Dpvy9mOtCNI&feature=youtu.be
+ Ссылка на демонстрацию проекта: https://youtu.be/Dpvy9mOtCNI
